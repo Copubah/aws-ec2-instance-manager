@@ -8,16 +8,16 @@ FUNCTION_NAME="ec2-auto-manager"
 REGION="us-east-1"
 ROLE_NAME="ec2-manager-lambda-role"
 
-echo "🚀 Deploying EC2 Manager to AWS Lambda..."
+echo "Deploying EC2 Manager to AWS Lambda..."
 
 # Build for Lambda
-echo "📦 Building Lambda package..."
+echo "Building Lambda package..."
 GOOS=linux GOARCH=amd64 go build -o ec2-manager main.go
 zip ec2-manager-lambda.zip ec2-manager
 
 # Check if IAM role exists
 if ! aws iam get-role --role-name $ROLE_NAME &>/dev/null; then
-    echo "📋 Creating IAM role..."
+    echo "Creating IAM role..."
     
     # Create trust policy
     cat > trust-policy.json << EOF
@@ -68,7 +68,7 @@ EOF
         --policy-name EC2ManagementPolicy \
         --policy-document file://ec2-policy.json
 
-    echo "⏳ Waiting for IAM role to propagate..."
+    echo "Waiting for IAM role to propagate..."
     sleep 10
 fi
 
@@ -77,12 +77,12 @@ ROLE_ARN=$(aws iam get-role --role-name $ROLE_NAME --query 'Role.Arn' --output t
 
 # Deploy or update Lambda function
 if aws lambda get-function --function-name $FUNCTION_NAME &>/dev/null; then
-    echo "🔄 Updating existing Lambda function..."
+    echo "Updating existing Lambda function..."
     aws lambda update-function-code \
         --function-name $FUNCTION_NAME \
         --zip-file fileb://ec2-manager-lambda.zip
 else
-    echo "✨ Creating new Lambda function..."
+    echo "Creating new Lambda function..."
     aws lambda create-function \
         --function-name $FUNCTION_NAME \
         --runtime go1.x \
@@ -97,10 +97,10 @@ fi
 # Clean up temporary files
 rm -f trust-policy.json ec2-policy.json
 
-echo "✅ Lambda function deployed successfully!"
-echo "📝 Function name: $FUNCTION_NAME"
-echo "🌍 Region: $REGION"
-echo "🔗 Role ARN: $ROLE_ARN"
+echo "PASS: Lambda function deployed successfully!"
+echo "Function name: $FUNCTION_NAME"
+echo "Region: $REGION"
+echo "Role ARN: $ROLE_ARN"
 echo
-echo "💡 To test the function:"
+echo "To test the function:"
 echo "aws lambda invoke --function-name $FUNCTION_NAME --payload '{\"action\":\"list\",\"dry_run\":true}' response.json"

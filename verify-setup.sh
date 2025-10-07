@@ -1,46 +1,46 @@
 #!/bin/bash
 
-echo "🔍 AWS EC2 Instance Manager - Setup Verification"
-echo "================================================"
+echo "AWS EC2 Instance Manager - Setup Verification"
+echo "============================================="
 
 # Check Go installation
-echo "📋 Checking Go installation..."
+echo "Checking Go installation..."
 if command -v go &> /dev/null; then
-    echo "✅ Go is installed: $(go version)"
+    echo "PASS: Go is installed: $(go version)"
 else
-    echo "❌ Go is not installed"
+    echo "FAIL: Go is not installed"
     exit 1
 fi
 
 # Check if we can build the project
-echo "🔨 Building project..."
+echo "Building project..."
 if go build -o ec2-manager main.go; then
-    echo "✅ Build successful"
+    echo "PASS: Build successful"
 else
-    echo "❌ Build failed"
+    echo "FAIL: Build failed"
     exit 1
 fi
 
 # Run tests
-echo "🧪 Running tests..."
+echo "Running tests..."
 if go test ./...; then
-    echo "✅ All tests passed"
+    echo "PASS: All tests passed"
 else
-    echo "❌ Tests failed"
+    echo "FAIL: Tests failed"
     exit 1
 fi
 
 # Check if binary works
-echo "🚀 Testing binary..."
+echo "Testing binary..."
 if ./ec2-manager -h > /dev/null 2>&1; then
-    echo "✅ Binary works correctly"
+    echo "PASS: Binary works correctly"
 else
-    echo "❌ Binary execution failed"
+    echo "FAIL: Binary execution failed"
     exit 1
 fi
 
 # Verify file structure
-echo "📁 Verifying project structure..."
+echo "Verifying project structure..."
 required_files=(
     "main.go"
     "internal/config/config.go"
@@ -51,29 +51,28 @@ required_files=(
     "SECURITY.md"
     ".gitignore"
     "Makefile"
-    ".github/workflows/ci.yml"
 )
 
 for file in "${required_files[@]}"; do
     if [[ -f "$file" ]]; then
-        echo "✅ $file exists"
+        echo "PASS: $file exists"
     else
-        echo "❌ $file missing"
+        echo "FAIL: $file missing"
         exit 1
     fi
 done
 
 # Check git status
-echo "📝 Git status..."
+echo "Git status..."
 if git status --porcelain | grep -q .; then
-    echo "⚠️  Uncommitted changes detected"
+    echo "WARNING: Uncommitted changes detected"
     git status --short
 else
-    echo "✅ All changes committed"
+    echo "PASS: All changes committed"
 fi
 
 echo ""
-echo "🎉 Setup verification complete!"
+echo "Setup verification complete!"
 echo ""
 echo "Next steps:"
 echo "1. Create GitHub repository (see github-setup.md)"
@@ -82,10 +81,9 @@ echo "3. Configure AWS credentials for testing"
 echo "4. Test with: ./test-script.sh"
 echo ""
 echo "Repository features:"
-echo "- ✅ Production-ready Go application"
-echo "- ✅ Modular architecture with best practices"
-echo "- ✅ Comprehensive test coverage"
-echo "- ✅ CI/CD pipeline with GitHub Actions"
-echo "- ✅ Security policies and documentation"
-echo "- ✅ Lambda deployment support"
-echo "- ✅ Multi-platform build support"
+echo "- Production-ready Go application"
+echo "- Modular architecture with best practices"
+echo "- Comprehensive test coverage"
+echo "- Security policies and documentation"
+echo "- Lambda deployment support"
+echo "- Multi-platform build support"
