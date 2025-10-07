@@ -271,7 +271,7 @@ We welcome contributions! Please see our contributing guidelines:
 ### Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/username/aws-ec2-instance-manager.git
+git clone https://github.com/Copubah/aws-ec2-instance-manager
 cd aws-ec2-instance-manager
 
 # Install dependencies
