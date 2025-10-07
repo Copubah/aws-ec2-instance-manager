@@ -90,7 +90,7 @@ go build -o ec2-manager main.go
 - Pull request template guides contributors
 - Comprehensive documentation helps onboarding
 
-### 🎯Success Metrics
+### Success Metrics
 
 Your repository now has:
 -  Professional-grade code organization
