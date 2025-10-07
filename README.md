@@ -138,15 +138,14 @@ aws-ec2-instance-manager/
 │   └── ec2/               # EC2 operations
 │       ├── manager.go
 │       └── manager_test.go
-├── .github/
-│   └── workflows/
-│       └── ci.yml         # GitHub Actions CI/CD
 ├── config.example.json    # Configuration template
 ├── lambda_handler.go      # Lambda deployment wrapper
 ├── deploy-lambda.sh       # Lambda deployment script
 ├── test-script.sh         # Testing utilities
+├── verify-setup.sh        # Setup verification script
 ├── Makefile              # Build automation
 ├── SECURITY.md           # Security guidelines
+├── DEPLOYMENT_COMPLETE.md # Deployment summary
 └── LICENSE               # MIT License
 ```
 
@@ -187,12 +186,11 @@ i-abcdef1234567890   running         t3.medium       database-server
 - Secure credential handling (no hardcoded secrets)
 - Security policy documentation
 
-### Testing & CI/CD
+### Testing & Quality
 - Unit tests with table-driven test patterns
-- GitHub Actions workflow for automated testing
-- Multi-platform build support
-- Security scanning with Gosec
-- Code coverage reporting
+- Multi-platform build support via Makefile
+- Comprehensive test coverage
+- Manual testing scripts provided
 
 ### Production Readiness
 - Graceful error handling and recovery
@@ -263,7 +261,7 @@ We welcome contributions! Please see our contributing guidelines:
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes with tests
-4. Run the test suite (`make test`)
+4. Run the test suite (`go test ./...`)
 5. Commit your changes (`git commit -m 'Add amazing feature'`)
 6. Push to the branch (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
@@ -278,7 +276,7 @@ cd aws-ec2-instance-manager
 go mod download
 
 # Run tests
-make test
+go test ./...
 
 # Build locally
 make build
