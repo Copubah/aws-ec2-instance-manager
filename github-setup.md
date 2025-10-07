@@ -1,45 +1,51 @@
 # GitHub Repository Setup
 
-## Option 1: Using GitHub CLI (Recommended)
+**Repository URL**: https://github.com/Copubah/aws-ec2-instance-manager
 
-If you have GitHub CLI installed:
+## Repository Already Created
+
+The repository has been successfully created and is available at:
+https://github.com/Copubah/aws-ec2-instance-manager
+
+## Cloning the Repository
+
+To clone and work with the repository:
 
 ```bash
-# Create repository on GitHub
-gh repo create aws-ec2-instance-manager --public --description "Production-ready Go application for automated AWS EC2 instance management using tag-based filtering"
+# Clone the repository
+git clone https://github.com/Copubah/aws-ec2-instance-manager.git
+cd aws-ec2-instance-manager
 
-# Push to GitHub
-git remote add origin https://github.com/YOUR_USERNAME/aws-ec2-instance-manager.git
-git push -u origin main
+# Install dependencies
+go mod tidy
+
+# Build the application
+go build -o ec2-manager main.go
 ```
 
-## Option 2: Using GitHub Web Interface
+## Contributing to the Repository
 
-1. Go to https://github.com/new
-2. Repository name: `aws-ec2-instance-manager`
-3. Description: `Production-ready Go application for automated AWS EC2 instance management using tag-based filtering`
-4. Set to Public
-5. Don't initialize with README (we already have one)
-6. Click "Create repository"
-
-Then run these commands:
+If you want to contribute:
 
 ```bash
-# Add remote origin (replace YOUR_USERNAME with your GitHub username)
-git remote add origin https://github.com/YOUR_USERNAME/aws-ec2-instance-manager.git
+# Fork the repository on GitHub first, then clone your fork
+git clone https://github.com/YOUR_USERNAME/aws-ec2-instance-manager.git
+cd aws-ec2-instance-manager
 
-# Push to GitHub
-git push -u origin main
-```
+# Add upstream remote
+git remote add upstream https://github.com/Copubah/aws-ec2-instance-manager.git
 
-## Option 3: Using SSH (if you have SSH keys configured)
+# Create a feature branch
+git checkout -b feature/your-feature-name
 
-```bash
-# Add remote origin with SSH
-git remote add origin git@github.com:YOUR_USERNAME/aws-ec2-instance-manager.git
+# Make changes and commit
+git add .
+git commit -m "Add your feature"
 
-# Push to GitHub
-git push -u origin main
+# Push to your fork
+git push origin feature/your-feature-name
+
+# Create a pull request on GitHub
 ```
 
 ## After Creating the Repository

@@ -1,5 +1,8 @@
 # AWS EC2 Instance Manager
-- A production-ready Go application for automated AWS EC2 instance management using tag-based filtering. Built with AWS SDK v2, this tool provides safe, reliable operations for starting, stopping, and listing EC2 instances.
+
+**Repository**: https://github.com/Copubah/aws-ec2-instance-manager
+
+A production-ready Go application for automated AWS EC2 instance management using tag-based filtering. Built with AWS SDK v2, this tool provides safe, reliable operations for starting, stopping, and listing EC2 instances.
 
 ## Features
 
@@ -77,11 +80,25 @@ Flow:
 
 ## Installation
 
-1. Clone or download this repository
-2. Install dependencies:
-   ```bash
-   go mod tidy
-   ```
+### Option 1: Download Binary Release
+```bash
+# Download the latest release
+curl -L https://github.com/Copubah/aws-ec2-instance-manager/releases/latest/download/ec2-manager-linux-amd64 -o ec2-manager
+chmod +x ec2-manager
+```
+
+### Option 2: Build from Source
+```bash
+# Clone the repository
+git clone https://github.com/Copubah/aws-ec2-instance-manager.git
+cd aws-ec2-instance-manager
+
+# Install dependencies
+go mod tidy
+
+# Build the application
+go build -o ec2-manager main.go
+```
 
 ## Usage
 
@@ -230,7 +247,7 @@ i-abcdef1234567890   running         t3.medium       database-server
 ### 1. Binary Deployment
 ```bash
 # Download from releases
-curl -L https://github.com/username/aws-ec2-instance-manager/releases/latest/download/ec2-manager-linux-amd64 -o ec2-manager
+curl -L https://github.com/Copubah/aws-ec2-instance-manager/releases/latest/download/ec2-manager-linux-amd64 -o ec2-manager
 chmod +x ec2-manager
 ```
 
